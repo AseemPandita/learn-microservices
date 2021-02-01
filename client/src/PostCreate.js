@@ -3,12 +3,14 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
+const HOST = 'http://posts.com';
+
 
 export default () => {
     const [title, setTitle] = useState('');
     const onSubmit = async (event) => {
         event.preventDefault();
-        await axios.post('http://localhost:4000/posts', {
+        await axios.post(HOST+'/posts/create', {
             title
         });
 
