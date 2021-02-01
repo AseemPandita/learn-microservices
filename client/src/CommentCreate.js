@@ -1,29 +1,35 @@
 /* eslint-disable import/no-anonymous-default-export */
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 
 const HOST = 'http://posts.com';
 
 export default ({ postId }) => {
-    const [content, setContent] = useState('');
-    
-    const onSubmit = async (event) => {
-        event.preventDefault();
+  const [content, setContent] = useState('');
 
-        await axios.post(`${HOST}/posts/${postId}/comments`, {
-            content
-        });
+  const onSubmit = async (event) => {
+    event.preventDefault();
 
-        setContent('');
-    };
+    await axios.post(`${HOST}/posts/${postId}/comments`, {
+      content,
+    });
 
-    return <div>
-        <form onSubmit={onSubmit}>
-            <div className="form-group">
-                <label>New Comment</label>
-                <input value ={content} onChange={e => setContent(e.target.value)} className="form-control"/>
-            </div>
-            <button className="btn btn-primary">Submit</button>
-        </form>
+    setContent('');
+  };
+
+  return (
+    <div>
+      <form onSubmit={onSubmit}>
+        <div className='form-group'>
+          <label>New Comment</label>
+          <input
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+            className='form-control'
+          />
+        </div>
+        <button className='btn btn-primary'>Submit</button>
+      </form>
     </div>
+  );
 };
